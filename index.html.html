@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_66f25a3b8cc508b573eddd12b0417d7a {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_66f25a3b8cc508b573eddd12b0417d7a" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_66f25a3b8cc508b573eddd12b0417d7a = L.map(
+                "map_66f25a3b8cc508b573eddd12b0417d7a",
+                {
+                    center: [-6.224280628372531, 106.83459001602928],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 11,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_935c883495f9f493002e2d3804a0a813 = L.tileLayer(
+                "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 20,
+  "maxNativeZoom": 20,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\"https://carto.com/attributions\"\u003eCARTO\u003c/a\u003e",
+  "subdomains": "abcd",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_935c883495f9f493002e2d3804a0a813.addTo(map_66f25a3b8cc508b573eddd12b0417d7a);
+        
+    
+    var color_map_b4548218c563e4a0a07e3b418e2afd58 = {};
+
+    
+    color_map_b4548218c563e4a0a07e3b418e2afd58.color = d3.scale.threshold()
+              .domain([-0.9241024837149104, -0.9183479178516162, -0.9125933519883219, -0.9068387861250277, -0.9010842202617335, -0.8953296543984393, -0.889575088535145, -0.8838205226718507, -0.8780659568085565, -0.8723113909452622, -0.866556825081968, -0.8608022592186737, -0.8550476933553796, -0.8492931274920853, -0.843538561628791, -0.8377839957654968, -0.8320294299022025, -0.8262748640389083, -0.820520298175614, -0.8147657323123199, -0.8090111664490256, -0.8032566005857313, -0.7975020347224371, -0.7917474688591428, -0.7859929029958486, -0.7802383371325543, -0.77448377126926, -0.7687292054059659, -0.7629746395426716, -0.7572200736793774, -0.7514655078160831, -0.7457109419527889, -0.7399563760894946, -0.7342018102262003, -0.7284472443629061, -0.7226926784996119, -0.7169381126363177, -0.7111835467730234, -0.7054289809097292, -0.6996744150464349, -0.6939198491831406, -0.6881652833198464, -0.6824107174565521, -0.676656151593258, -0.6709015857299637, -0.6651470198666695, -0.6593924540033752, -0.6536378881400811, -0.6478833222767868, -0.6421287564134925, -0.6363741905501983, -0.630619624686904, -0.6248650588236098, -0.6191104929603155, -0.6133559270970212, -0.607601361233727, -0.6018467953704327, -0.5960922295071385, -0.5903376636438442, -0.58458309778055, -0.5788285319172558, -0.5730739660539617, -0.5673194001906674, -0.5615648343273731, -0.5558102684640789, -0.5500557026007846, -0.5443011367374904, -0.5385465708741961, -0.5327920050109018, -0.5270374391476076, -0.5212828732843133, -0.5155283074210191, -0.5097737415577248, -0.5040191756944306, -0.49826460983113635, -0.4925100439678421, -0.48675547810454795, -0.4810009122412537, -0.4752463463779594, -0.46949178051466517, -0.4637372146513709, -0.45798264878807665, -0.4522280829247824, -0.4464735170614882, -0.44071895119819393, -0.43496438533489973, -0.42920981947160547, -0.42345525360831127, -0.417700687745017, -0.41194612188172275, -0.4061915560184285, -0.40043699015513423, -0.39468242429184, -0.3889278584285457, -0.38317329256525157, -0.3774187267019573, -0.37166416083866305, -0.3659095949753688, -0.36015502911207453, -0.3544004632487803, -0.348645897385486, -0.34289133152219176, -0.3371367656588975, -0.33138219979560324, -0.325627633932309, -0.31987306806901483, -0.3141185022057206, -0.3083639363424263, -0.30260937047913217, -0.2968548046158379, -0.29110023875254365, -0.2853456728892494, -0.27959110702595513, -0.2738365411626609, -0.2680819752993666, -0.26232740943607236, -0.2565728435727781, -0.25081827770948384, -0.24506371184618958, -0.23930914598289532, -0.23355458011960117, -0.22780001425630692, -0.22204544839301277, -0.2162908825297185, -0.21053631666642425, -0.20478175080313, -0.19902718493983573, -0.19327261907654147, -0.18751805321324722, -0.18176348734995296, -0.1760089214866587, -0.17025435562336444, -0.16449978976007018, -0.15874522389677592, -0.15299065803348166, -0.1472360921701874, -0.14148152630689315, -0.1357269604435991, -0.12997239458030485, -0.12421782871701059, -0.11846326285371633, -0.11270869699042207, -0.10695413112712782, -0.10119956526383356, -0.0954449994005393, -0.08969043353724504, -0.08393586767395078, -0.07818130181065652, -0.07242673594736226, -0.066672170084068, -0.06091760422077375, -0.0551630383574796, -0.04940847249418545, -0.04365390663089119, -0.037899340767596934, -0.032144774904302675, -0.026390209041008417, -0.020635643177714158, -0.0148810773144199, -0.00912651145112564, -0.003371945587831382, 0.0023826202754628767, 0.008137186138757135, 0.013891752002051394, 0.019646317865345653, 0.0254008837286398, 0.03115544959193406, 0.03691001545522832, 0.042664581318522576, 0.048419147181816724, 0.05417371304511098, 0.05992827890840524, 0.0656828447716995, 0.07143741063499376, 0.0771919764982879, 0.08294654236158217, 0.08870110822487642, 0.09445567408817068, 0.10021023995146494, 0.1059648058147592, 0.11171937167805346, 0.11747393754134772, 0.12322850340464198, 0.12898306926793623, 0.1347376351312305, 0.14049220099452475, 0.146246766857819, 0.15200133272111327, 0.1577558985844073, 0.1635104644477018, 0.16926503031099582, 0.1750195961742903, 0.18077416203758434, 0.1865287279008786, 0.19228329376417286, 0.19803785962746712, 0.20379242549076138, 0.20954699135405563, 0.2153015572173499, 0.22105612308064415, 0.2268106889439384, 0.23256525480723245, 0.23831982067052693, 0.24407438653382096, 0.24982895239711544, 0.2555835182604095, 0.26133808412370396, 0.267092649986998, 0.2728472158502925, 0.2786017817135865, 0.2843563475768808, 0.29011091344017503, 0.2958654793034693, 0.30162004516676355, 0.3073746110300578, 0.31312917689335207, 0.3188837427566461, 0.3246383086199406, 0.3303928744832346, 0.3361474403465291, 0.34190200620982314, 0.3476565720731176, 0.35341113793641166, 0.35916570379970614, 0.3649202696630002, 0.37067483552629443, 0.3764294013895887, 0.38218396725288295, 0.3879385331161772, 0.39369309897947147, 0.3994476648427657, 0.40520223070605976, 0.41095679656935424, 0.4167113624326483, 0.42246592829594276, 0.4282204941592368, 0.4339750600225313, 0.4397296258858253, 0.4454841917491198, 0.45123875761241383, 0.4569933234757081, 0.46274788933900235, 0.4685024552022966, 0.47425702106559087, 0.4800115869288849, 0.4857661527921794, 0.4915207186554734, 0.4972752845187679, 0.5030298503820619, 0.5087844162453564, 0.5145389821086505, 0.5202935479719449, 0.526048113835239, 0.5318026796985335, 0.5375572455618275, 0.543311811425122, 0.549066377288416, 0.5548209431517103, 0.5605755090150045, 0.5663300748782986, 0.572084640741593, 0.5778392066048871, 0.5835937724681816, 0.5893483383314756, 0.5951029041947701, 0.6008574700580641, 0.6066120359213586, 0.6123666017846526, 0.6181211676479471, 0.6238757335112411, 0.6296302993745356, 0.6353848652378297, 0.6411394311011241, 0.6468939969644182, 0.6526485628277122, 0.6584031286910067, 0.6641576945543007, 0.6699122604175952, 0.6756668262808893, 0.6814213921441837, 0.6871759580074778, 0.6929305238707723, 0.6986850897340663, 0.7044396555973608, 0.7101942214606548, 0.7159487873239493, 0.7217033531872433, 0.7274579190505378, 0.7332124849138318, 0.7389670507771259, 0.7447216166404204, 0.7504761825037144, 0.7562307483670089, 0.7619853142303029, 0.7677398800935974, 0.7734944459568914, 0.7792490118201859, 0.78500357768348, 0.7907581435467744, 0.7965127094100685, 0.802267275273363, 0.808021841136657, 0.8137764069999512, 0.8195309728632455, 0.8252855387265395, 0.831040104589834, 0.836794670453128, 0.8425492363164225, 0.8483038021797166, 0.854058368043011, 0.8598129339063051, 0.8655674997695996, 0.8713220656328936, 0.8770766314961881, 0.8828311973594821, 0.8885857632227766, 0.8943403290860706, 0.9000948949493649, 0.9058494608126592, 0.9116040266759534, 0.9173585925392477, 0.9231131584025417, 0.9288677242658362, 0.9346222901291302, 0.9403768559924247, 0.9461314218557187, 0.9518859877190132, 0.9576405535823073, 0.9633951194456017, 0.9691496853088958, 0.97490425117219, 0.9806588170354843, 0.9864133828987786, 0.9921679487620728, 0.9979225146253671, 1.0036770804886612, 1.0094316463519557, 1.0151862122152497, 1.0209407780785438, 1.0266953439418383, 1.0324499098051323, 1.0382044756684268, 1.0439590415317208, 1.0497136073950153, 1.0554681732583093, 1.0612227391216038, 1.0669773049848978, 1.0727318708481923, 1.0784864367114864, 1.0842410025747808, 1.0899955684380749, 1.0957501343013694, 1.1015047001646634, 1.1072592660279579, 1.113013831891252, 1.1187683977545464, 1.1245229636178404, 1.130277529481135, 1.136032095344429, 1.1417866612077234, 1.1475412270710175, 1.1532957929343115, 1.159050358797606, 1.1648049246609005, 1.1705594905241945, 1.1763140563874885, 1.182068622250783, 1.1878231881140775, 1.1935777539773715, 1.1993323198406656, 1.20508688570396, 1.210841451567254, 1.2165960174305486, 1.2223505832938426, 1.228105149157137, 1.2338597150204311, 1.2396142808837252, 1.2453688467470196, 1.2511234126103141, 1.2568779784736082, 1.2626325443369022, 1.2683871102001967, 1.2741416760634912, 1.2798962419267852, 1.2856508077900792, 1.2914053736533737, 1.2971599395166677, 1.3029145053799618, 1.3086690712432563, 1.3144236371065507, 1.3201782029698448, 1.3259327688331388, 1.3316873346964333, 1.3374419005597278, 1.3431964664230218, 1.3489510322863159, 1.3547055981496103, 1.3604601640129048, 1.3662147298761989, 1.3719692957394929, 1.3777238616027874, 1.3834784274660814, 1.3892329933293754, 1.39498755919267, 1.4007421250559644, 1.4064966909192584, 1.4122512567825525, 1.418005822645847, 1.4237603885091414, 1.4295149543724355, 1.4352695202357295, 1.441024086099024, 1.4467786519623185, 1.4525332178256125, 1.4582877836889065, 1.464042349552201, 1.4697969154154955, 1.475551481278789, 1.4813060471420836, 1.487060613005378, 1.492815178868672, 1.4985697447319661, 1.5043243105952606, 1.510078876458555, 1.5158334423218491, 1.5215880081851432, 1.5273425740484377, 1.5330971399117321, 1.5388517057750262, 1.5446062716383202, 1.5503608375016147, 1.5561154033649092, 1.5618699692282028, 1.5676245350914972, 1.5733791009547917, 1.5791336668180858, 1.5848882326813798, 1.5906427985446743, 1.5963973644079688, 1.6021519302712628, 1.6079064961345568, 1.6136610619978513, 1.6194156278611458, 1.6251701937244398, 1.6309247595877339, 1.6366793254510283, 1.6424338913143228, 1.6481884571776164, 1.653943023040911, 1.6596975889042054, 1.6654521547674994, 1.6712067206307935, 1.676961286494088, 1.6827158523573824, 1.6884704182206765, 1.6942249840839705, 1.699979549947265, 1.7057341158105594, 1.7114886816738535, 1.7172432475371475, 1.722997813400442, 1.7287523792637365, 1.73450694512703, 1.7402615109903246, 1.746016076853619, 1.751770642716913, 1.757525208580207, 1.7632797744435016, 1.769034340306796, 1.77478890617009, 1.7805434720333841, 1.7862980378966786, 1.792052603759973, 1.7978071696232667, 1.8035617354865612, 1.8093163013498557, 1.8150708672131501, 1.8208254330764437, 1.8265799989397382, 1.8323345648030327, 1.8380891306663267, 1.8438436965296208, 1.8495982623929152, 1.8553528282562097, 1.8611073941195038, 1.8668619599827978, 1.8726165258460923, 1.8783710917093868, 1.8841256575726804, 1.8898802234359748, 1.8956347892992693, 1.9013893551625638, 1.9071439210258574, 1.9128984868891519, 1.9186530527524464, 1.9244076186157408, 1.9301621844790344, 1.935916750342329, 1.9416713162056234, 1.9474258820689174])
+              .range(['#ffffccff', '#ffffccff', '#ffffcbff', '#ffffcaff', '#fffec9ff', '#fffec9ff', '#fffec8ff', '#fffdc7ff', '#fffdc7ff', '#fffdc6ff', '#fffdc5ff', '#fffcc5ff', '#fffcc4ff', '#fffcc3ff', '#fffbc2ff', '#fffbc2ff', '#fffbc1ff', '#fffbc0ff', '#fffac0ff', '#fffabfff', '#fffabeff', '#fff9bdff', '#fff9bdff', '#fff9bcff', '#fff9bbff', '#fff8bbff', '#fff8baff', '#fff8b9ff', '#fff7b8ff', '#fff7b8ff', '#fff7b7ff', '#fff7b6ff', '#fff6b6ff', '#fff6b5ff', '#fff6b4ff', '#fff5b4ff', '#fff5b3ff', '#fff5b2ff', '#fff4b1ff', '#fff4b1ff', '#fff4b0ff', '#fff4afff', '#fff3afff', '#fff3aeff', '#fff3adff', '#fff2acff', '#fff2acff', '#fff2abff', '#fff2aaff', '#fff1aaff', '#fff1a9ff', '#fff1a8ff', '#fff0a7ff', '#fff0a7ff', '#fff0a6ff', '#fff0a5ff', '#ffefa5ff', '#ffefa4ff', '#ffefa3ff', '#ffeea3ff', '#ffeea2ff', '#ffeea1ff', '#ffeea0ff', '#ffeda0ff', '#ffed9fff', '#ffed9eff', '#ffec9eff', '#ffec9dff', '#ffec9cff', '#ffeb9cff', '#ffeb9bff', '#ffeb9aff', '#ffea9aff', '#ffea99ff', '#ffea98ff', '#ffe998ff', '#ffe997ff', '#ffe996ff', '#ffe896ff', '#ffe895ff', '#ffe894ff', '#ffe794ff', '#ffe793ff', '#ffe792ff', '#ffe692ff', '#ffe691ff', '#ffe690ff', '#ffe68fff', '#ffe58fff', '#ffe58eff', '#ffe58dff', '#ffe48dff', '#ffe48cff', '#ffe48bff', '#ffe38bff', '#ffe38aff', '#ffe389ff', '#ffe289ff', '#ffe288ff', '#ffe287ff', '#ffe187ff', '#ffe186ff', '#ffe185ff', '#ffe085ff', '#ffe084ff', '#ffe083ff', '#ffdf83ff', '#ffdf82ff', '#ffdf81ff', '#ffde81ff', '#ffde80ff', '#ffde7fff', '#ffdd7fff', '#ffdd7eff', '#ffdd7dff', '#ffdc7dff', '#ffdc7cff', '#ffdc7bff', '#ffdc7bff', '#ffdb7aff', '#ffdb79ff', '#ffdb78ff', '#ffda78ff', '#ffda77ff', '#ffda76ff', '#fed976ff', '#fed975ff', '#fed874ff', '#fed774ff', '#fed773ff', '#fed672ff', '#fed572ff', '#fed571ff', '#fed470ff', '#fed470ff', '#fed36fff', '#fed26eff', '#fed26eff', '#fed16dff', '#fed06cff', '#fed06cff', '#fecf6bff', '#fecf6aff', '#fece6aff', '#fecd69ff', '#fecd68ff', '#fecc68ff', '#fecb67ff', '#fecb66ff', '#feca66ff', '#feca65ff', '#fec964ff', '#fec864ff', '#fec863ff', '#fec762ff', '#fec662ff', '#fec661ff', '#fec560ff', '#fec45fff', '#fec45fff', '#fec35eff', '#fec35dff', '#fec25dff', '#fec15cff', '#fec15bff', '#fec05bff', '#febf5aff', '#febf59ff', '#febe59ff', '#febe58ff', '#febd57ff', '#febc57ff', '#febc56ff', '#febb55ff', '#feba55ff', '#feba54ff', '#feb953ff', '#feb953ff', '#feb852ff', '#feb751ff', '#feb751ff', '#feb650ff', '#feb54fff', '#feb54fff', '#feb44eff', '#feb44dff', '#feb34dff', '#feb24cff', '#feb24cff', '#feb14bff', '#feb04bff', '#feb04bff', '#feaf4bff', '#feaf4aff', '#feae4aff', '#feae4aff', '#fead4aff', '#feac49ff', '#feac49ff', '#feab49ff', '#feab48ff', '#feaa48ff', '#fea948ff', '#fea948ff', '#fea847ff', '#fea847ff', '#fea747ff', '#fea647ff', '#fea646ff', '#fea546ff', '#fea546ff', '#fea446ff', '#fea345ff', '#fea345ff', '#fea245ff', '#fea245ff', '#fea144ff', '#fea044ff', '#fea044ff', '#fe9f44ff', '#fe9f43ff', '#fe9e43ff', '#fe9d43ff', '#fe9d43ff', '#fe9c42ff', '#fe9c42ff', '#fe9b42ff', '#fe9a42ff', '#fe9a41ff', '#fe9941ff', '#fe9941ff', '#fe9840ff', '#fe9740ff', '#fe9740ff', '#fe9640ff', '#fe963fff', '#fe953fff', '#fe943fff', '#fe943fff', '#fe933eff', '#fe933eff', '#fe923eff', '#fe923eff', '#fe913dff', '#fe903dff', '#fe903dff', '#fe8f3dff', '#fe8f3cff', '#fe8e3cff', '#fe8d3cff', '#fd8d3cff', '#fd8c3bff', '#fd8b3bff', '#fd8a3bff', '#fd883aff', '#fd873aff', '#fd863aff', '#fd853aff', '#fd8439ff', '#fd8339ff', '#fd8239ff', '#fd8138ff', '#fd8038ff', '#fd7f38ff', '#fd7e38ff', '#fd7d37ff', '#fd7c37ff', '#fd7b37ff', '#fd7a36ff', '#fd7936ff', '#fd7836ff', '#fd7736ff', '#fd7635ff', '#fd7535ff', '#fd7435ff', '#fd7334ff', '#fd7234ff', '#fd7134ff', '#fd7033ff', '#fd6f33ff', '#fd6e33ff', '#fd6d33ff', '#fd6c32ff', '#fd6b32ff', '#fd6a32ff', '#fd6931ff', '#fd6831ff', '#fd6731ff', '#fd6631ff', '#fd6530ff', '#fd6430ff', '#fd6330ff', '#fd622fff', '#fd612fff', '#fd602fff', '#fd5f2fff', '#fd5e2eff', '#fd5d2eff', '#fd5c2eff', '#fd5b2dff', '#fd5a2dff', '#fd592dff', '#fd582dff', '#fd572cff', '#fd562cff', '#fd552cff', '#fd542bff', '#fd532bff', '#fd522bff', '#fd512aff', '#fd502aff', '#fd4f2aff', '#fc4e2aff', '#fc4d29ff', '#fc4c29ff', '#fb4b29ff', '#fb4a29ff', '#fa4a29ff', '#fa4928ff', '#fa4828ff', '#f94728ff', '#f94628ff', '#f84527ff', '#f84427ff', '#f84427ff', '#f74327ff', '#f74226ff', '#f64126ff', '#f64026ff', '#f63f26ff', '#f53f26ff', '#f53e25ff', '#f43d25ff', '#f43c25ff', '#f43b25ff', '#f33a24ff', '#f33a24ff', '#f23924ff', '#f23824ff', '#f23724ff', '#f13623ff', '#f13523ff', '#f03523ff', '#f03423ff', '#f03322ff', '#ef3222ff', '#ef3122ff', '#ee3022ff', '#ee3022ff', '#ee2f21ff', '#ed2e21ff', '#ed2d21ff', '#ec2c21ff', '#ec2b20ff', '#ec2b20ff', '#eb2a20ff', '#eb2920ff', '#ea281fff', '#ea271fff', '#ea261fff', '#e9261fff', '#e9251fff', '#e8241eff', '#e8231eff', '#e8221eff', '#e7211eff', '#e7211dff', '#e6201dff', '#e61f1dff', '#e61e1dff', '#e51d1dff', '#e51c1cff', '#e41b1cff', '#e41b1cff', '#e31a1cff', '#e3191cff', '#e2191cff', '#e2181cff', '#e1181cff', '#e0181cff', '#e0171dff', '#df171dff', '#df161dff', '#de161dff', '#dd161dff', '#dd151dff', '#dc151eff', '#dc141eff', '#db141eff', '#da131eff', '#da131eff', '#d9131eff', '#d9121eff', '#d8121fff', '#d7111fff', '#d7111fff', '#d6111fff', '#d5101fff', '#d5101fff', '#d40f20ff', '#d40f20ff', '#d30e20ff', '#d20e20ff', '#d20e20ff', '#d10d20ff', '#d10d21ff', '#d00c21ff', '#cf0c21ff', '#cf0b21ff', '#ce0b21ff', '#ce0b21ff', '#cd0a22ff', '#cc0a22ff', '#cc0922ff', '#cb0922ff', '#ca0922ff', '#ca0822ff', '#c90822ff', '#c90723ff', '#c80723ff', '#c70623ff', '#c70623ff', '#c60623ff', '#c60523ff', '#c50524ff', '#c40424ff', '#c40424ff', '#c30424ff', '#c30324ff', '#c20324ff', '#c10225ff', '#c10225ff', '#c00125ff', '#bf0125ff', '#bf0125ff', '#be0025ff', '#be0026ff', '#bd0026ff', '#bc0026ff', '#bb0026ff', '#ba0026ff', '#b90026ff', '#b80026ff', '#b70026ff', '#b60026ff', '#b50026ff', '#b40026ff', '#b30026ff', '#b20026ff', '#b10026ff', '#b00026ff', '#af0026ff', '#ae0026ff', '#ad0026ff', '#ac0026ff', '#ab0026ff', '#aa0026ff', '#a90026ff', '#a80026ff', '#a70026ff', '#a60026ff', '#a50026ff', '#a40026ff', '#a30026ff', '#a20026ff', '#a10026ff', '#a00026ff', '#9f0026ff', '#9e0026ff', '#9d0026ff', '#9c0026ff', '#9b0026ff', '#9b0026ff', '#9a0026ff', '#990026ff', '#980026ff', '#970026ff', '#960026ff', '#950026ff', '#940026ff', '#930026ff', '#920026ff', '#910026ff', '#900026ff', '#8f0026ff', '#8e0026ff', '#8d0026ff', '#8c0026ff', '#8b0026ff', '#8a0026ff', '#890026ff', '#880026ff', '#870026ff', '#860026ff', '#850026ff', '#840026ff', '#830026ff', '#820026ff', '#810026ff', '#800026ff']);
+    
+
+    color_map_b4548218c563e4a0a07e3b418e2afd58.x = d3.scale.linear()
+              .domain([-0.9241024837149104, 1.9474258820689174])
+              .range([0, 450 - 50]);
+
+    color_map_b4548218c563e4a0a07e3b418e2afd58.legend = L.control({position: 'topright'});
+    color_map_b4548218c563e4a0a07e3b418e2afd58.legend.onAdd = function (map) {var div = L.DomUtil.create('div', 'legend'); return div};
+    color_map_b4548218c563e4a0a07e3b418e2afd58.legend.addTo(map_66f25a3b8cc508b573eddd12b0417d7a);
+
+    color_map_b4548218c563e4a0a07e3b418e2afd58.xAxis = d3.svg.axis()
+        .scale(color_map_b4548218c563e4a0a07e3b418e2afd58.x)
+        .orient("top")
+        .tickSize(1)
+        .tickValues([-0.9241024837149104, -0.565161437991932, -0.2062203922689535, 0.15272065345402497, 0.5116616991770034, 0.8706027448999819, 1.2295437906229605, 1.588484836345939, 1.9474258820689174]);
+
+    color_map_b4548218c563e4a0a07e3b418e2afd58.svg = d3.select(".legend.leaflet-control").append("svg")
+        .attr("id", 'legend')
+        .attr("width", 450)
+        .attr("height", 40);
+
+    color_map_b4548218c563e4a0a07e3b418e2afd58.g = color_map_b4548218c563e4a0a07e3b418e2afd58.svg.append("g")
+        .attr("class", "key")
+        .attr("fill", "black")
+        .attr("transform", "translate(25,16)");
+
+    color_map_b4548218c563e4a0a07e3b418e2afd58.g.selectAll("rect")
+        .data(color_map_b4548218c563e4a0a07e3b418e2afd58.color.range().map(function(d, i) {
+          return {
+            x0: i ? color_map_b4548218c563e4a0a07e3b418e2afd58.x(color_map_b4548218c563e4a0a07e3b418e2afd58.color.domain()[i - 1]) : color_map_b4548218c563e4a0a07e3b418e2afd58.x.range()[0],
+            x1: i < color_map_b4548218c563e4a0a07e3b418e2afd58.color.domain().length ? color_map_b4548218c563e4a0a07e3b418e2afd58.x(color_map_b4548218c563e4a0a07e3b418e2afd58.color.domain()[i]) : color_map_b4548218c563e4a0a07e3b418e2afd58.x.range()[1],
+            z: d
+          };
+        }))
+      .enter().append("rect")
+        .attr("height", 40 - 30)
+        .attr("x", function(d) { return d.x0; })
+        .attr("width", function(d) { return d.x1 - d.x0; })
+        .style("fill", function(d) { return d.z; });
+
+    color_map_b4548218c563e4a0a07e3b418e2afd58.g.call(color_map_b4548218c563e4a0a07e3b418e2afd58.xAxis).append("text")
+        .attr("class", "caption")
+        .attr("y", 21)
+        .attr("fill", "black")
+        .text("Final Score (Demand + Activity Proxy)");
+    
+            var circle_marker_7b3151c27c39aa6ffbef1b731b6f5ad5 = L.circleMarker(
+                [-6.216671849709917, 106.82650419430375],
+                {"bubblingMouseEvents": true, "color": "#800026ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#800026ff", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 28.0, "stroke": true, "weight": 2}
+            ).addTo(map_66f25a3b8cc508b573eddd12b0417d7a);
+        
+    
+        var popup_a9a9c344544284314e7d8ce545eaef37 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_e3628ccf263e99c58039007bee9b2985 = $(`<div id="html_e3628ccf263e99c58039007bee9b2985" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px;">       <h4 style="margin-bottom:6px;">Candidate Rank #1</h4>       <b>Final Score:</b> 1.947<br>       <b>Demand Score:</b> 1.743<br>       <b>Total Orders (hex):</b> 4,459<br>       <b>Total GMV (hex):</b> 428,498,172<br>       <b>POI Total (radius 800m):</b> 271<br>       <b>Food Places:</b> 84<br>       <b>Transit:</b> 103<br>       <b>Center:</b> -6.21667, 106.82650<br>       <b>H3:</b> 888c1078e7fffff<br>     </div>     </div>`)[0];
+                popup_a9a9c344544284314e7d8ce545eaef37.setContent(html_e3628ccf263e99c58039007bee9b2985);
+            
+        
+
+        circle_marker_7b3151c27c39aa6ffbef1b731b6f5ad5.bindPopup(popup_a9a9c344544284314e7d8ce545eaef37)
+        ;
+
+        
+    
+    
+            circle_marker_7b3151c27c39aa6ffbef1b731b6f5ad5.bindTooltip(
+                `<div>
+                     Rank #1 | score=1.947 | orders=4,459
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_0ffc72201aeccf49cde3e46b41ba285e = L.circleMarker(
+                [-6.232309363980072, 106.85030030492027],
+                {"bubblingMouseEvents": true, "color": "#970026ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#970026ff", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 28.0, "stroke": true, "weight": 2}
+            ).addTo(map_66f25a3b8cc508b573eddd12b0417d7a);
+        
+    
+        var popup_4c6c4647c620a315f3c64c3fac5981f9 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_616d4d53ddc44f3a65028ddbdc428adf = $(`<div id="html_616d4d53ddc44f3a65028ddbdc428adf" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px;">       <h4 style="margin-bottom:6px;">Candidate Rank #2</h4>       <b>Final Score:</b> 1.811<br>       <b>Demand Score:</b> 1.722<br>       <b>Total Orders (hex):</b> 9,832<br>       <b>Total GMV (hex):</b> 752,798,847<br>       <b>POI Total (radius 800m):</b> 225<br>       <b>Food Places:</b> 89<br>       <b>Transit:</b> 72<br>       <b>Center:</b> -6.23231, 106.85030<br>       <b>H3:</b> 888c107815fffff<br>     </div>     </div>`)[0];
+                popup_4c6c4647c620a315f3c64c3fac5981f9.setContent(html_616d4d53ddc44f3a65028ddbdc428adf);
+            
+        
+
+        circle_marker_0ffc72201aeccf49cde3e46b41ba285e.bindPopup(popup_4c6c4647c620a315f3c64c3fac5981f9)
+        ;
+
+        
+    
+    
+            circle_marker_0ffc72201aeccf49cde3e46b41ba285e.bindTooltip(
+                `<div>
+                     Rank #2 | score=1.811 | orders=9,832
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_34e40674b0e09e8d8d8bff079484df83 = L.circleMarker(
+                [-6.171518474568841, 106.78893243607715],
+                {"bubblingMouseEvents": true, "color": "#c10225ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#c10225ff", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 28.0, "stroke": true, "weight": 2}
+            ).addTo(map_66f25a3b8cc508b573eddd12b0417d7a);
+        
+    
+        var popup_2813a62c0a4173aa53f7d79ff39f55e5 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_aab6846b27fb6c5ec9def397a536b5b7 = $(`<div id="html_aab6846b27fb6c5ec9def397a536b5b7" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px;">       <h4 style="margin-bottom:6px;">Candidate Rank #3</h4>       <b>Final Score:</b> 1.557<br>       <b>Demand Score:</b> 1.617<br>       <b>Total Orders (hex):</b> 2,119<br>       <b>Total GMV (hex):</b> 216,595,900<br>       <b>POI Total (radius 800m):</b> 278<br>       <b>Food Places:</b> 114<br>       <b>Transit:</b> 110<br>       <b>Center:</b> -6.17152, 106.78893<br>       <b>H3:</b> 888c106a05fffff<br>     </div>     </div>`)[0];
+                popup_2813a62c0a4173aa53f7d79ff39f55e5.setContent(html_aab6846b27fb6c5ec9def397a536b5b7);
+            
+        
+
+        circle_marker_34e40674b0e09e8d8d8bff079484df83.bindPopup(popup_2813a62c0a4173aa53f7d79ff39f55e5)
+        ;
+
+        
+    
+    
+            circle_marker_34e40674b0e09e8d8d8bff079484df83.bindTooltip(
+                `<div>
+                     Rank #3 | score=1.557 | orders=2,119
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_329d6ab2c8446e094c20e284feb01511 = L.circleMarker(
+                [-6.244379216889515, 106.80643102548727],
+                {"bubblingMouseEvents": true, "color": "#e41a1cff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e41a1cff", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 28.0, "stroke": true, "weight": 2}
+            ).addTo(map_66f25a3b8cc508b573eddd12b0417d7a);
+        
+    
+        var popup_b9c3db696a0c7be653805366792a75bb = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_1537c9db8034d8d77823eda2340e1485 = $(`<div id="html_1537c9db8034d8d77823eda2340e1485" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px;">       <h4 style="margin-bottom:6px;">Candidate Rank #4</h4>       <b>Final Score:</b> 1.227<br>       <b>Demand Score:</b> 1.554<br>       <b>Total Orders (hex):</b> 1,384<br>       <b>Total GMV (hex):</b> 159,803,950<br>       <b>POI Total (radius 800m):</b> 194<br>       <b>Food Places:</b> 67<br>       <b>Transit:</b> 98<br>       <b>Center:</b> -6.24438, 106.80643<br>       <b>H3:</b> 888c1078d5fffff<br>     </div>     </div>`)[0];
+                popup_b9c3db696a0c7be653805366792a75bb.setContent(html_1537c9db8034d8d77823eda2340e1485);
+            
+        
+
+        circle_marker_329d6ab2c8446e094c20e284feb01511.bindPopup(popup_b9c3db696a0c7be653805366792a75bb)
+        ;
+
+        
+    
+    
+            circle_marker_329d6ab2c8446e094c20e284feb01511.bindTooltip(
+                `<div>
+                     Rank #4 | score=1.227 | orders=1,384
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_a9e8327d957d6e6b202e00cbe5e47455 = L.circleMarker(
+                [-6.257785422712478, 106.78793488564521],
+                {"bubblingMouseEvents": true, "color": "#fa4828ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fa4828ff", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 28.0, "stroke": true, "weight": 2}
+            ).addTo(map_66f25a3b8cc508b573eddd12b0417d7a);
+        
+    
+        var popup_1922b0a8b2c2d12a345c8ea63d22d08a = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_cb1066071b4dc1d5ed2eb476b85d7cfe = $(`<div id="html_cb1066071b4dc1d5ed2eb476b85d7cfe" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px;">       <h4 style="margin-bottom:6px;">Candidate Rank #5</h4>       <b>Final Score:</b> 0.912<br>       <b>Demand Score:</b> 1.483<br>       <b>Total Orders (hex):</b> 2,601<br>       <b>Total GMV (hex):</b> 251,264,219<br>       <b>POI Total (radius 800m):</b> 151<br>       <b>Food Places:</b> 35<br>       <b>Transit:</b> 88<br>       <b>Center:</b> -6.25779, 106.78793<br>       <b>H3:</b> 888c10632dfffff<br>     </div>     </div>`)[0];
+                popup_1922b0a8b2c2d12a345c8ea63d22d08a.setContent(html_cb1066071b4dc1d5ed2eb476b85d7cfe);
+            
+        
+
+        circle_marker_a9e8327d957d6e6b202e00cbe5e47455.bindPopup(popup_1922b0a8b2c2d12a345c8ea63d22d08a)
+        ;
+
+        
+    
+    
+            circle_marker_a9e8327d957d6e6b202e00cbe5e47455.bindTooltip(
+                `<div>
+                     Rank #5 | score=0.912 | orders=2,601
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_d18d358f7d361ad0cf0e18f4d84cbca1 = L.circleMarker(
+                [-6.200133276980537, 106.7857792824479],
+                {"bubblingMouseEvents": true, "color": "#fe8e3cff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fe8e3cff", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 28.0, "stroke": true, "weight": 2}
+            ).addTo(map_66f25a3b8cc508b573eddd12b0417d7a);
+        
+    
+        var popup_29a0a51cc4bba75e498cf11ed91fd551 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_dee746cdfbdecd0956cbfebad8265212 = $(`<div id="html_dee746cdfbdecd0956cbfebad8265212" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px;">       <h4 style="margin-bottom:6px;">Candidate Rank #6</h4>       <b>Final Score:</b> 0.506<br>       <b>Demand Score:</b> 1.297<br>       <b>Total Orders (hex):</b> 5,016<br>       <b>Total GMV (hex):</b> 399,871,353<br>       <b>POI Total (radius 800m):</b> 250<br>       <b>Food Places:</b> 161<br>       <b>Transit:</b> 42<br>       <b>Center:</b> -6.20013, 106.78578<br>       <b>H3:</b> 888c106a5dfffff<br>     </div>     </div>`)[0];
+                popup_29a0a51cc4bba75e498cf11ed91fd551.setContent(html_dee746cdfbdecd0956cbfebad8265212);
+            
+        
+
+        circle_marker_d18d358f7d361ad0cf0e18f4d84cbca1.bindPopup(popup_29a0a51cc4bba75e498cf11ed91fd551)
+        ;
+
+        
+    
+    
+            circle_marker_d18d358f7d361ad0cf0e18f4d84cbca1.bindTooltip(
+                `<div>
+                     Rank #6 | score=0.506 | orders=5,016
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_b180dd2b2793ee4d1bb3fb96db46b463 = L.circleMarker(
+                [-6.194546907256105, 106.8161813037347],
+                {"bubblingMouseEvents": true, "color": "#fe933eff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fe933eff", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 28.0, "stroke": true, "weight": 2}
+            ).addTo(map_66f25a3b8cc508b573eddd12b0417d7a);
+        
+    
+        var popup_eaccb46a3604446cafa344fd32ed1762 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_303d1079613017e7b2db8835c4d7e592 = $(`<div id="html_303d1079613017e7b2db8835c4d7e592" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px;">       <h4 style="margin-bottom:6px;">Candidate Rank #7</h4>       <b>Final Score:</b> 0.450<br>       <b>Demand Score:</b> 1.271<br>       <b>Total Orders (hex):</b> 2,319<br>       <b>Total GMV (hex):</b> 234,832,566<br>       <b>POI Total (radius 800m):</b> 269<br>       <b>Food Places:</b> 61<br>       <b>Transit:</b> 141<br>       <b>Center:</b> -6.19455, 106.81618<br>       <b>H3:</b> 888c10799bfffff<br>     </div>     </div>`)[0];
+                popup_eaccb46a3604446cafa344fd32ed1762.setContent(html_303d1079613017e7b2db8835c4d7e592);
+            
+        
+
+        circle_marker_b180dd2b2793ee4d1bb3fb96db46b463.bindPopup(popup_eaccb46a3604446cafa344fd32ed1762)
+        ;
+
+        
+    
+    
+            circle_marker_b180dd2b2793ee4d1bb3fb96db46b463.bindTooltip(
+                `<div>
+                     Rank #7 | score=0.450 | orders=2,319
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_46e90247df35d3e27040613a27ab20d1 = L.circleMarker(
+                [-6.279896540619338, 106.79825963969306],
+                {"bubblingMouseEvents": true, "color": "#fe9e43ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fe9e43ff", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 28.0, "stroke": true, "weight": 2}
+            ).addTo(map_66f25a3b8cc508b573eddd12b0417d7a);
+        
+    
+        var popup_ddb33357ca7d3270f583257373e0645d = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_75d885e1edf7b57ad85333d901975963 = $(`<div id="html_75d885e1edf7b57ad85333d901975963" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px;">       <h4 style="margin-bottom:6px;">Candidate Rank #8</h4>       <b>Final Score:</b> 0.344<br>       <b>Demand Score:</b> 1.338<br>       <b>Total Orders (hex):</b> 1,852<br>       <b>Total GMV (hex):</b> 255,489,482<br>       <b>POI Total (radius 800m):</b> 112<br>       <b>Food Places:</b> 26<br>       <b>Transit:</b> 57<br>       <b>Center:</b> -6.27990, 106.79826<br>       <b>H3:</b> 888c106369fffff<br>     </div>     </div>`)[0];
+                popup_ddb33357ca7d3270f583257373e0645d.setContent(html_75d885e1edf7b57ad85333d901975963);
+            
+        
+
+        circle_marker_46e90247df35d3e27040613a27ab20d1.bindPopup(popup_ddb33357ca7d3270f583257373e0645d)
+        ;
+
+        
+    
+    
+            circle_marker_46e90247df35d3e27040613a27ab20d1.bindTooltip(
+                `<div>
+                     Rank #8 | score=0.344 | orders=1,852
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_948280ad04ee3c630e0da62a05723240 = L.circleMarker(
+                [-6.163031461998319, 106.90048167051661],
+                {"bubblingMouseEvents": true, "color": "#fea546ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fea546ff", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 28.0, "stroke": true, "weight": 2}
+            ).addTo(map_66f25a3b8cc508b573eddd12b0417d7a);
+        
+    
+        var popup_0471f0670b8e0b9ab5bf4a6f4c4c4816 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_878a95a0996ef5280b1be90e79e5e1c3 = $(`<div id="html_878a95a0996ef5280b1be90e79e5e1c3" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px;">       <h4 style="margin-bottom:6px;">Candidate Rank #9</h4>       <b>Final Score:</b> 0.281<br>       <b>Demand Score:</b> 1.399<br>       <b>Total Orders (hex):</b> 2,618<br>       <b>Total GMV (hex):</b> 291,836,300<br>       <b>POI Total (radius 800m):</b> 55<br>       <b>Food Places:</b> 8<br>       <b>Transit:</b> 35<br>       <b>Center:</b> -6.16303, 106.90048<br>       <b>H3:</b> 888c107923fffff<br>     </div>     </div>`)[0];
+                popup_0471f0670b8e0b9ab5bf4a6f4c4c4816.setContent(html_878a95a0996ef5280b1be90e79e5e1c3);
+            
+        
+
+        circle_marker_948280ad04ee3c630e0da62a05723240.bindPopup(popup_0471f0670b8e0b9ab5bf4a6f4c4c4816)
+        ;
+
+        
+    
+    
+            circle_marker_948280ad04ee3c630e0da62a05723240.bindTooltip(
+                `<div>
+                     Rank #9 | score=0.281 | orders=2,618
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f43691c75e3131a54055c7857a5bb118 = L.circleMarker(
+                [-6.198566238875596, 106.89230264406632],
+                {"bubblingMouseEvents": true, "color": "#fead4aff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fead4aff", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 28.0, "stroke": true, "weight": 2}
+            ).addTo(map_66f25a3b8cc508b573eddd12b0417d7a);
+        
+    
+        var popup_22458b836968b7a9ed3ec9efe91dfb9a = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_9a37ff6c1cc95b3e81d3a0cc2c87ac04 = $(`<div id="html_9a37ff6c1cc95b3e81d3a0cc2c87ac04" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px;">       <h4 style="margin-bottom:6px;">Candidate Rank #10</h4>       <b>Final Score:</b> 0.201<br>       <b>Demand Score:</b> 1.291<br>       <b>Total Orders (hex):</b> 2,402<br>       <b>Total GMV (hex):</b> 174,634,050<br>       <b>POI Total (radius 800m):</b> 114<br>       <b>Food Places:</b> 19<br>       <b>Transit:</b> 76<br>       <b>Center:</b> -6.19857, 106.89230<br>       <b>H3:</b> 888c107957fffff<br>     </div>     </div>`)[0];
+                popup_22458b836968b7a9ed3ec9efe91dfb9a.setContent(html_9a37ff6c1cc95b3e81d3a0cc2c87ac04);
+            
+        
+
+        circle_marker_f43691c75e3131a54055c7857a5bb118.bindPopup(popup_22458b836968b7a9ed3ec9efe91dfb9a)
+        ;
+
+        
+    
+    
+            circle_marker_f43691c75e3131a54055c7857a5bb118.bindTooltip(
+                `<div>
+                     Rank #10 | score=0.201 | orders=2,402
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_3d284f125f00fe26abcae7375f89e2d7 = L.circleMarker(
+                [-6.266492099143185, 106.81675363572103],
+                {"bubblingMouseEvents": true, "color": "#fec05bff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fec05bff", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 28.0, "stroke": true, "weight": 2}
+            ).addTo(map_66f25a3b8cc508b573eddd12b0417d7a);
+        
+    
+        var popup_fa3b0b9f781df9464ec066a5eb97b13c = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_78948b2f926a41230114010fb86b88c4 = $(`<div id="html_78948b2f926a41230114010fb86b88c4" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px;">       <h4 style="margin-bottom:6px;">Candidate Rank #11</h4>       <b>Final Score:</b> 0.026<br>       <b>Demand Score:</b> 1.269<br>       <b>Total Orders (hex):</b> 768<br>       <b>Total GMV (hex):</b> 142,402,200<br>       <b>POI Total (radius 800m):</b> 85<br>       <b>Food Places:</b> 12<br>       <b>Transit:</b> 69<br>       <b>Center:</b> -6.26649, 106.81675<br>       <b>H3:</b> 888c107ab1fffff<br>     </div>     </div>`)[0];
+                popup_fa3b0b9f781df9464ec066a5eb97b13c.setContent(html_78948b2f926a41230114010fb86b88c4);
+            
+        
+
+        circle_marker_3d284f125f00fe26abcae7375f89e2d7.bindPopup(popup_fa3b0b9f781df9464ec066a5eb97b13c)
+        ;
+
+        
+    
+    
+            circle_marker_3d284f125f00fe26abcae7375f89e2d7.bindTooltip(
+                `<div>
+                     Rank #11 | score=0.026 | orders=768
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_596bd082e9d53b4426a77c067f0725c0 = L.circleMarker(
+                [-6.181583618202312, 106.8431381269314],
+                {"bubblingMouseEvents": true, "color": "#fec05bff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fec05bff", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 28.0, "stroke": true, "weight": 2}
+            ).addTo(map_66f25a3b8cc508b573eddd12b0417d7a);
+        
+    
+        var popup_c3b1009a0829f98ad32706bcaa477bfe = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_563b752e40858ecf9cc9f63da5a1d625 = $(`<div id="html_563b752e40858ecf9cc9f63da5a1d625" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px;">       <h4 style="margin-bottom:6px;">Candidate Rank #12</h4>       <b>Final Score:</b> 0.024<br>       <b>Demand Score:</b> 1.172<br>       <b>Total Orders (hex):</b> 221<br>       <b>Total GMV (hex):</b> 28,290,357<br>       <b>POI Total (radius 800m):</b> 197<br>       <b>Food Places:</b> 18<br>       <b>Transit:</b> 131<br>       <b>Center:</b> -6.18158, 106.84314<br>       <b>H3:</b> 888c107981fffff<br>     </div>     </div>`)[0];
+                popup_c3b1009a0829f98ad32706bcaa477bfe.setContent(html_563b752e40858ecf9cc9f63da5a1d625);
+            
+        
+
+        circle_marker_596bd082e9d53b4426a77c067f0725c0.bindPopup(popup_c3b1009a0829f98ad32706bcaa477bfe)
+        ;
+
+        
+    
+    
+            circle_marker_596bd082e9d53b4426a77c067f0725c0.bindTooltip(
+                `<div>
+                     Rank #12 | score=0.024 | orders=221
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_4100f8d13e76ed73feec97c92c99a15a = L.circleMarker(
+                [-6.267552168857812, 106.97393548769803],
+                {"bubblingMouseEvents": true, "color": "#feca65ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#feca65ff", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 28.0, "stroke": true, "weight": 2}
+            ).addTo(map_66f25a3b8cc508b573eddd12b0417d7a);
+        
+    
+        var popup_52203dc7641ef902182e40200e2a014f = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_22f740d0c0fc038f17188188638c8af8 = $(`<div id="html_22f740d0c0fc038f17188188638c8af8" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px;">       <h4 style="margin-bottom:6px;">Candidate Rank #13</h4>       <b>Final Score:</b> -0.065<br>       <b>Demand Score:</b> 1.354<br>       <b>Total Orders (hex):</b> 4,829<br>       <b>Total GMV (hex):</b> 379,669,090<br>       <b>POI Total (radius 800m):</b> 31<br>       <b>Food Places:</b> 12<br>       <b>Transit:</b> 1<br>       <b>Center:</b> -6.26755, 106.97394<br>       <b>H3:</b> 888c104edbfffff<br>     </div>     </div>`)[0];
+                popup_52203dc7641ef902182e40200e2a014f.setContent(html_22f740d0c0fc038f17188188638c8af8);
+            
+        
+
+        circle_marker_4100f8d13e76ed73feec97c92c99a15a.bindPopup(popup_52203dc7641ef902182e40200e2a014f)
+        ;
+
+        
+    
+    
+            circle_marker_4100f8d13e76ed73feec97c92c99a15a.bindTooltip(
+                `<div>
+                     Rank #13 | score=-0.065 | orders=4,829
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_2615413336db8017140eb07fb001ff25 = L.circleMarker(
+                [-6.159002845326015, 106.82435597504389],
+                {"bubblingMouseEvents": true, "color": "#fecc68ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fecc68ff", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 28.0, "stroke": true, "weight": 2}
+            ).addTo(map_66f25a3b8cc508b573eddd12b0417d7a);
+        
+    
+        var popup_f676bf5f68e0a8a7514f34cb508b39bb = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_4d765bfd81dc789ace85e790c000eee4 = $(`<div id="html_4d765bfd81dc789ace85e790c000eee4" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px;">       <h4 style="margin-bottom:6px;">Candidate Rank #14</h4>       <b>Final Score:</b> -0.086<br>       <b>Demand Score:</b> 1.163<br>       <b>Total Orders (hex):</b> 260<br>       <b>Total GMV (hex):</b> 24,457,800<br>       <b>POI Total (radius 800m):</b> 158<br>       <b>Food Places:</b> 37<br>       <b>Transit:</b> 67<br>       <b>Center:</b> -6.15900, 106.82436<br>       <b>H3:</b> 888c1079b7fffff<br>     </div>     </div>`)[0];
+                popup_f676bf5f68e0a8a7514f34cb508b39bb.setContent(html_4d765bfd81dc789ace85e790c000eee4);
+            
+        
+
+        circle_marker_2615413336db8017140eb07fb001ff25.bindPopup(popup_f676bf5f68e0a8a7514f34cb508b39bb)
+        ;
+
+        
+    
+    
+            circle_marker_2615413336db8017140eb07fb001ff25.bindTooltip(
+                `<div>
+                     Rank #14 | score=-0.086 | orders=260
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_b13428347d436bc422f9e510dad761e9 = L.circleMarker(
+                [-6.2356675763796146, 106.77760795812078],
+                {"bubblingMouseEvents": true, "color": "#ffda77ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ffda77ff", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 28.0, "stroke": true, "weight": 2}
+            ).addTo(map_66f25a3b8cc508b573eddd12b0417d7a);
+        
+    
+        var popup_a21e6db204a1a7e19fb5c909b20734ff = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_5281c5cb1f2c91d2029618fb9d5ddbcb = $(`<div id="html_5281c5cb1f2c91d2029618fb9d5ddbcb" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px;">       <h4 style="margin-bottom:6px;">Candidate Rank #15</h4>       <b>Final Score:</b> -0.212<br>       <b>Demand Score:</b> 1.165<br>       <b>Total Orders (hex):</b> 1,256<br>       <b>Total GMV (hex):</b> 83,664,250<br>       <b>POI Total (radius 800m):</b> 110<br>       <b>Food Places:</b> 5<br>       <b>Transit:</b> 86<br>       <b>Center:</b> -6.23567, 106.77761<br>       <b>H3:</b> 888c107893fffff<br>     </div>     </div>`)[0];
+                popup_a21e6db204a1a7e19fb5c909b20734ff.setContent(html_5281c5cb1f2c91d2029618fb9d5ddbcb);
+            
+        
+
+        circle_marker_b13428347d436bc422f9e510dad761e9.bindPopup(popup_a21e6db204a1a7e19fb5c909b20734ff)
+        ;
+
+        
+    
+    
+            circle_marker_b13428347d436bc422f9e510dad761e9.bindTooltip(
+                `<div>
+                     Rank #15 | score=-0.212 | orders=1,256
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_b9100bceec664e1c303d488c9fa66807 = L.circleMarker(
+                [-6.219347403928243, 106.87724910584606],
+                {"bubblingMouseEvents": true, "color": "#ffda78ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ffda78ff", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 28.0, "stroke": true, "weight": 2}
+            ).addTo(map_66f25a3b8cc508b573eddd12b0417d7a);
+        
+    
+        var popup_7bf37225184275f413d8acb9fa4e6e5e = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_3cb90ac50591ba3b3f2b222dc9272c88 = $(`<div id="html_3cb90ac50591ba3b3f2b222dc9272c88" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px;">       <h4 style="margin-bottom:6px;">Candidate Rank #16</h4>       <b>Final Score:</b> -0.222<br>       <b>Demand Score:</b> 1.141<br>       <b>Total Orders (hex):</b> 290<br>       <b>Total GMV (hex):</b> 20,694,237<br>       <b>POI Total (radius 800m):</b> 131<br>       <b>Food Places:</b> 7<br>       <b>Transit:</b> 113<br>       <b>Center:</b> -6.21935, 106.87725<br>       <b>H3:</b> 888c107829fffff<br>     </div>     </div>`)[0];
+                popup_7bf37225184275f413d8acb9fa4e6e5e.setContent(html_3cb90ac50591ba3b3f2b222dc9272c88);
+            
+        
+
+        circle_marker_b9100bceec664e1c303d488c9fa66807.bindPopup(popup_7bf37225184275f413d8acb9fa4e6e5e)
+        ;
+
+        
+    
+    
+            circle_marker_b9100bceec664e1c303d488c9fa66807.bindTooltip(
+                `<div>
+                     Rank #16 | score=-0.222 | orders=290
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_fd856635fdefc6c64215c5cb17322ebb = L.circleMarker(
+                [-6.245716033661233, 106.83180701129368],
+                {"bubblingMouseEvents": true, "color": "#ffec9cff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ffec9cff", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 28.0, "stroke": true, "weight": 2}
+            ).addTo(map_66f25a3b8cc508b573eddd12b0417d7a);
+        
+    
+        var popup_f1646227b7be8d09aad1ad4e6f6721b6 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_d738029a2224023f7798ea7798c46bca = $(`<div id="html_d738029a2224023f7798ea7798c46bca" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px;">       <h4 style="margin-bottom:6px;">Candidate Rank #17</h4>       <b>Final Score:</b> -0.531<br>       <b>Demand Score:</b> 1.065<br>       <b>Total Orders (hex):</b> 3,419<br>       <b>Total GMV (hex):</b> 319,353,201<br>       <b>POI Total (radius 800m):</b> 109<br>       <b>Food Places:</b> 11<br>       <b>Transit:</b> 76<br>       <b>Center:</b> -6.24572, 106.83181<br>       <b>H3:</b> 888c1078cdfffff<br>     </div>     </div>`)[0];
+                popup_f1646227b7be8d09aad1ad4e6f6721b6.setContent(html_d738029a2224023f7798ea7798c46bca);
+            
+        
+
+        circle_marker_fd856635fdefc6c64215c5cb17322ebb.bindPopup(popup_f1646227b7be8d09aad1ad4e6f6721b6)
+        ;
+
+        
+    
+    
+            circle_marker_fd856635fdefc6c64215c5cb17322ebb.bindTooltip(
+                `<div>
+                     Rank #17 | score=-0.531 | orders=3,419
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_b7294cf600a0afece27338a4f91d5fe5 = L.circleMarker(
+                [-6.275194746275963, 106.8455652139986],
+                {"bubblingMouseEvents": true, "color": "#fff6b6ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fff6b6ff", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 28.0, "stroke": true, "weight": 2}
+            ).addTo(map_66f25a3b8cc508b573eddd12b0417d7a);
+        
+    
+        var popup_56e33a2002a3325d83b9186a056c8ffd = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_3432a81ab26bce4ca5101340e5b5c3d5 = $(`<div id="html_3432a81ab26bce4ca5101340e5b5c3d5" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px;">       <h4 style="margin-bottom:6px;">Candidate Rank #18</h4>       <b>Final Score:</b> -0.744<br>       <b>Demand Score:</b> 1.043<br>       <b>Total Orders (hex):</b> 618<br>       <b>Total GMV (hex):</b> 66,388,243<br>       <b>POI Total (radius 800m):</b> 73<br>       <b>Food Places:</b> 2<br>       <b>Transit:</b> 51<br>       <b>Center:</b> -6.27519, 106.84557<br>       <b>H3:</b> 888c107ae3fffff<br>     </div>     </div>`)[0];
+                popup_56e33a2002a3325d83b9186a056c8ffd.setContent(html_3432a81ab26bce4ca5101340e5b5c3d5);
+            
+        
+
+        circle_marker_b7294cf600a0afece27338a4f91d5fe5.bindPopup(popup_56e33a2002a3325d83b9186a056c8ffd)
+        ;
+
+        
+    
+    
+            circle_marker_b7294cf600a0afece27338a4f91d5fe5.bindTooltip(
+                `<div>
+                     Rank #18 | score=-0.744 | orders=618
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_b064c4785851eadf47505166c799d52d = L.circleMarker(
+                [-6.30066843975786, 106.78320675596508],
+                {"bubblingMouseEvents": true, "color": "#fff8bbff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#fff8bbff", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 28.0, "stroke": true, "weight": 2}
+            ).addTo(map_66f25a3b8cc508b573eddd12b0417d7a);
+        
+    
+        var popup_f7546fa94ae95ea1ea01f5f81bd051b7 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_9b568bce039011f7063384f9a9be3838 = $(`<div id="html_9b568bce039011f7063384f9a9be3838" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px;">       <h4 style="margin-bottom:6px;">Candidate Rank #19</h4>       <b>Final Score:</b> -0.780<br>       <b>Demand Score:</b> 1.043<br>       <b>Total Orders (hex):</b> 1,156<br>       <b>Total GMV (hex):</b> 93,764,750<br>       <b>POI Total (radius 800m):</b> 66<br>       <b>Food Places:</b> 5<br>       <b>Transit:</b> 64<br>       <b>Center:</b> -6.30067, 106.78321<br>       <b>H3:</b> 888c10634bfffff<br>     </div>     </div>`)[0];
+                popup_f7546fa94ae95ea1ea01f5f81bd051b7.setContent(html_9b568bce039011f7063384f9a9be3838);
+            
+        
+
+        circle_marker_b064c4785851eadf47505166c799d52d.bindPopup(popup_f7546fa94ae95ea1ea01f5f81bd051b7)
+        ;
+
+        
+    
+    
+            circle_marker_b064c4785851eadf47505166c799d52d.bindTooltip(
+                `<div>
+                     Rank #19 | score=-0.780 | orders=1,156
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_601db1455f1fd9aab1ee1d4e382dade6 = L.circleMarker(
+                [-6.175548882327688, 106.86507366307505],
+                {"bubblingMouseEvents": true, "color": "#ffffccff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ffffccff", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 28.0, "stroke": true, "weight": 2}
+            ).addTo(map_66f25a3b8cc508b573eddd12b0417d7a);
+        
+    
+        var popup_f04b90f36e92eb65564c14e0924be335 = L.popup({
+  "maxWidth": 350,
+});
+
+        
+            
+                var html_4f19de2e39ee07fb329ce63681c25d7d = $(`<div id="html_4f19de2e39ee07fb329ce63681c25d7d" style="width: 100.0%; height: 100.0%;">     <div style="width: 300px;">       <h4 style="margin-bottom:6px;">Candidate Rank #20</h4>       <b>Final Score:</b> -0.924<br>       <b>Demand Score:</b> 0.965<br>       <b>Total Orders (hex):</b> 178<br>       <b>Total GMV (hex):</b> 11,026,800<br>       <b>POI Total (radius 800m):</b> 88<br>       <b>Food Places:</b> 5<br>       <b>Transit:</b> 47<br>       <b>Center:</b> -6.17555, 106.86507<br>       <b>H3:</b> 888c1079e1fffff<br>     </div>     </div>`)[0];
+                popup_f04b90f36e92eb65564c14e0924be335.setContent(html_4f19de2e39ee07fb329ce63681c25d7d);
+            
+        
+
+        circle_marker_601db1455f1fd9aab1ee1d4e382dade6.bindPopup(popup_f04b90f36e92eb65564c14e0924be335)
+        ;
+
+        
+    
+    
+            circle_marker_601db1455f1fd9aab1ee1d4e382dade6.bindTooltip(
+                `<div>
+                     Rank #20 | score=-0.924 | orders=178
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            tile_layer_935c883495f9f493002e2d3804a0a813.addTo(map_66f25a3b8cc508b573eddd12b0417d7a);
+        
+</script>
+</html>
